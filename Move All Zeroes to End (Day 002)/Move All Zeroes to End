@@ -1,0 +1,9 @@
+class Solution:
+    def pushZerosToEnd(self,arr):
+        non_zero_ptr = 0
+        current_ptr = 0
+        while current_ptr < len(arr):
+            if arr[current_ptr] != 0:
+                arr[non_zero_ptr], arr[current_ptr] = arr[current_ptr], arr[non_zero_ptr]
+                non_zero_ptr += 1
+            current_ptr += 1
