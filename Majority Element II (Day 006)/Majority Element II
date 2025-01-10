@@ -1,0 +1,14 @@
+class Solution:
+    # Function to find the majority elements in the array
+    def findMajority(self, arr):
+        total_votes = len(arr)
+        threshold = total_votes // 3 + 1  
+        vote_counts = {}
+        for vote in arr:
+            if vote in vote_counts:
+                vote_counts[vote] += 1
+            else:
+                vote_counts[vote] = 1
+            majority_candidates = [candidate for candidate, count in vote_counts.items() if count >= threshold]
+
+        return sorted(majority_candidates)
