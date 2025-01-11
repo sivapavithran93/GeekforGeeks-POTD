@@ -1,0 +1,29 @@
+class Solution:
+    #User function Template for python3
+    #Function to count inversions in the array.
+    def merge(self, left, right):
+        result = []
+        i = j = 0
+        inv_count = 0
+        while i < len(left) and j < len(right):
+            if left[i] <= right[j]:
+                result.append(left[i])
+                i += 1
+            else:
+                result.append(right[j])
+                j += 1
+                inv_count += len(left) - i  # Count inversions
+        result.extend(left[i:])
+        result.extend(right[j:])
+        return result, inv_count
+    def sort_and_count(self, arr):
+        if len(arr) <= 1:
+            return arr, 0
+        mid = len(arr) // 2
+        left_sorted, left_inv = self.sort_and_count(arr[:mid])
+        right_sorted, right_inv = self.sort_and_count(arr[mid:])
+        merged_sorted, merge_inv = self.merge(left_sorted, right_sorted)
+        return merged_sorted, left_inv + right_inv + merge_inv
+    def inversionCount(self, arr):
+        _, inversions = self.sort_and_count(arr)
+        return inversions
