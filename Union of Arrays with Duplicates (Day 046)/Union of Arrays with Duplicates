@@ -1,0 +1,7 @@
+class Solution:    
+    #Function to return the count of number of elements in union of two arrays.
+    def findUnion(self, a, b):
+        c = a + b
+        d = set(c)
+        
+        return len(d)
