@@ -1,0 +1,17 @@
+class Solution:
+    def countDistinct(self, arr, k):
+        n = len(arr)
+        if n < k:
+            return []
+        result = []
+        window_dict = {}
+        for i in range(k):
+            window_dict[arr[i]] = window_dict.get(arr[i], 0) + 1
+        result.append(len(window_dict))
+        for i in range(k, n):
+            window_dict[arr[i - k]] -= 1
+            if window_dict[arr[i - k]] == 0:
+                del window_dict[arr[i - k]]
+            window_dict[arr[i]] = window_dict.get(arr[i], 0) + 1
+            result.append(len(window_dict))
+        return result
