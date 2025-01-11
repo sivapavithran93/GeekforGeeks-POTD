@@ -1,0 +1,11 @@
+from collections import defaultdict
+class Solution:
+    def anagrams(self, arr):
+        anagram_map = defaultdict(list)
+        for i,s in enumerate(arr):
+            sorted_str = "".join(sorted(s))
+            anagram_map[sorted_str].append(s)
+        result = []
+        for key in anagram_map:
+            result.append(anagram_map[key])
+        return result
