@@ -1,0 +1,13 @@
+class Solution:
+    def kthMissing(self, arr, k):
+        current_number = 1
+        missing_count = 0
+        i = 0 
+        while True:
+            if i < len(arr) and arr[i] == current_number:
+                i += 1
+            else:
+                missing_count += 1  
+                if missing_count == k:
+                    return current_number
+            current_number += 1     
