@@ -1,0 +1,9 @@
+class Solution:
+    def intersectionWithDuplicates(self, a, b):
+        sa = set(a)
+        sb = set(b)
+        output = []
+        for i in sa:
+            if i in sb:
+                output.append(i)
+        return output
