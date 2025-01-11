@@ -1,0 +1,11 @@
+class Solution:
+    def subarrayXor(self, arr, k):
+        n = len(arr)
+        xor_sum = 0
+        count = 0
+        xor_count = {0:1}
+        for num in arr:
+            xor_sum ^= num
+            count += xor_count.get(xor_sum ^ k, 0)
+            xor_count[xor_sum] = xor_count.get(xor_sum,0)+1
+        return count
