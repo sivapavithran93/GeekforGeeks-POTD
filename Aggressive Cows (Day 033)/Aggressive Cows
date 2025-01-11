@@ -1,0 +1,24 @@
+class Solution:
+
+    
+    def is_feasible(self, stalls, k, min_distance):
+        last_placed = stalls[0]
+        count = 1
+        for i in range(1, len(stalls)):
+            if stalls[i] - last_placed >= min_distance:
+                count += 1
+                last_placed = stalls[i]
+            if count == k:
+                return True
+        return False
+    def aggressiveCows(self, stalls, k):
+        stalls.sort()
+        low = 1
+        high = (stalls[-1] - stalls[0]) // (k - 1) + 1
+        while low <= high:
+            mid = (low + high) // 2
+            if self.is_feasible(stalls, k, mid):
+                low = mid + 1
+            else:
+                high = mid - 1
+        return high
