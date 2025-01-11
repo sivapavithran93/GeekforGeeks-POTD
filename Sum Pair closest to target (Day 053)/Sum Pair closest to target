@@ -1,0 +1,25 @@
+class Solution:
+    def sumClosest(self, arr, target):
+        arr.sort()
+        closest_pair = []
+        min_diff = float("inf")
+        max_abs_diff = float("-inf")
+        left = 0
+        right = len(arr) - 1
+        while left < right:
+            current_sum = arr[left] + arr[right]
+            current_diff = abs(current_sum - target)
+            
+            if current_diff < min_diff:
+                min_diff = current_diff
+                closest_pair = [arr[left], arr[right]]
+                max_abs_diff = abs(arr[right]-arr[left])
+            elif current_diff == min_diff:
+                if abs(arr[right] - arr[left]) > max_abs_diff:
+                    closest_pair = [arr[left], arr[right]]
+                    max_abs_diff = abs(arr[right]- arr[left])
+            if current_sum < target:
+                left += 1
+            else:
+                right -= 1
+        return closest_pair
