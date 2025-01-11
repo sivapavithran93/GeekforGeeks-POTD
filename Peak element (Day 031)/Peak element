@@ -1,0 +1,21 @@
+class Solution:   
+    def verify_peak_index(self, arr, index):
+        if index == 0:
+            return arr[index] > arr[index + 1]
+        elif index == len(arr) - 1:
+            return arr[index] > arr[index - 1]
+        else:
+            return arr[index] > arr[index - 1] and arr[index] > arr[index + 1]
+    def peakElement(self, arr):
+        if not arr:
+            return -1
+        left, right = 0, len(arr) - 1
+        while left < right:
+            mid = (left + right) // 2
+            if (mid == 0 or arr[mid] > arr[mid - 1]) and (mid == len(arr) - 1 or arr[mid] > arr[mid + 1]):
+                return mid
+            elif mid > 0 and arr[mid] < arr[mid - 1]:
+                right = mid - 1
+            else:
+                left = mid + 1
+        return left
