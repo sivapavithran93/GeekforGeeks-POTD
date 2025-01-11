@@ -1,0 +1,9 @@
+class Solution:
+    def twoSum(self, arr, target):
+        sample = set()
+        for num in arr:
+            output = target - num
+            if output in sample:
+                return True
+            sample.add(num)
+        return False
