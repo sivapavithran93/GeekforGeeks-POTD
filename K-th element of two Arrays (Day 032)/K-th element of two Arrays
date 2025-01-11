@@ -1,0 +1,6 @@
+class Solution:
+
+    def kthElement(self, a, b, k):
+        join = a+b
+        join.sort()
+        return join[k-1]
