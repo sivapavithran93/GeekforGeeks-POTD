@@ -1,0 +1,4 @@
+class Solution:
+    def power(self, b: float, e: int) -> float:
+        c = b**e
+        return c
