@@ -1,0 +1,17 @@
+
+class Solution:
+    def nQueen(self, n):
+        result = []
+        def backtrack(board, row, n):
+            if row == n:
+                result.append([x + 1 for x in board])  
+                return
+            
+            for col in range(n):
+                if col not in board and all(abs(board[i] - col) != row - i for i in range(row)):
+                    board.append(col)  
+                    backtrack(board, row + 1, n)  
+                    board.pop() 
+        
+        backtrack([], 0, n) 
+        return result
