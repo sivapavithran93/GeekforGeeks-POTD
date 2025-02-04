@@ -1,0 +1,21 @@
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class Solution:
+    def mirror(self, root):
+        if root is None:
+            return None
+        left_mirror = self.mirror(root.left)
+        right_mirror = self.mirror(root.right)
+        root.left = right_mirror
+        root.right = left_mirror
+        return root
+    def printPostorder(self, root):
+        if root is None:
+            return
+        self.printPostorder(root.left)
+        self.printPostorder(root.right)
+        print(root.val, end=' ')
