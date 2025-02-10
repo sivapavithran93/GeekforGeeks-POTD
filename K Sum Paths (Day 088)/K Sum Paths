@@ -1,0 +1,34 @@
+class Solution {
+public:
+    // Function to count downward paths with sum k
+    int sumK(Node* root, int k) {
+        unordered_map<int, int> prefixSumCount;
+        prefixSumCount[0] = 1;  // Initialize for paths starting from the root itself
+        return countPaths(root, k, 0, prefixSumCount);
+    }
+
+    // Helper function to count paths with sum k starting from the current node
+    int countPaths(Node* node, int target, int currentSum, unordered_map<int, int>& prefixSumCount) {
+        if (node == nullptr) {
+            return 0;
+        }
+
+        // Update the current cumulative sum
+        currentSum += node->data;
+
+        // Count the number of valid paths that sum to k
+        int result = prefixSumCount[currentSum - target];
+
+        // Update the count of the current cumulative sum in the map
+        prefixSumCount[currentSum]++;
+
+        // Recur for left and right children
+        result += countPaths(node->left, target, currentSum, prefixSumCount);
+        result += countPaths(node->right, target, currentSum, prefixSumCount);
+
+        // Backtrack: Decrease the count of the current cumulative sum
+        prefixSumCount[currentSum]--;
+
+        return result;
+    }
+};
