@@ -1,0 +1,20 @@
+class Solution:
+    def numIslands(self, grid):
+        if not grid:
+            return 0
+        n = len(grid)
+        m = len(grid[0])
+        island_count = 0
+        def dfs(i, j):
+            grid[i][j] = 'W'
+            directions = [(-1, 0), (1, 0), (0, -1), (0, 1), (-1, -1), (-1, 1), (1, -1), (1, 1)]
+            for di, dj in directions:
+                ni, nj = i + di, j + dj
+                if 0 <= ni < n and 0 <= nj < m and grid[ni][nj] == 'L':
+                    dfs(ni, nj)
+        for i in range(n):
+            for j in range(m):
+                if grid[i][j] == 'L':  
+                    island_count += 1
+                    dfs(i, j)  
+        return island_count
